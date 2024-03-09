@@ -107,40 +107,6 @@ ax.grid()
 ax.set_title("Total for Bike Sharing", fontsize = 25)
 
 st.pyplot(fig)
-## Pie Chart
-# 2011 Month Filter
-day_2011 = day_df[day_df["yr"] == 0]
-day_2011_group = day_2011.groupby(by="mnth").agg({
-    "cnt": ["sum"]
-}).reset_index()
-
-# 2012 Month Filter
-day_2012 = day_df[day_df["yr"] == 1]
-day_2012_group = day_2012.groupby(by="mnth").agg({
-    "cnt": ["sum"]
-}).reset_index()
-
-#Pie Chart between 2011 and 2012
-# Total 
-total2011 = day_2011_group["cnt"]["sum"].sum()
-total2012 = day_2012_group["cnt"]["sum"].sum()
-
-labels = ['2011', '2012']
-
-# Data
-sizes = [total2011, total2012]
-
-# Pie chart
-# Create a new figure and axes
-fig, ax = plt.subplots(figsize=(8, 8))
-
-# Create the pie chart
-ax.pie(sizes, labels=labels, autopct=lambda p: '{:.0f} ({:.1f}%)'.format(p * sum(sizes) / 100, p), startangle=140, colors=['red', 'yellow'])
-ax.axis('equal')
-
-# Set the title of the chart
-ax.set_title('Total of Bike Sharing for 2011 and 2012')
-st.pyplot(fig)
 
 # Demography
 st.subheader("Bike Rental Season Recap")
